@@ -1,6 +1,31 @@
 ---
-title: "Analysis 1"
+title: "A Beautiful Graphic"
 author: Genesis
 format: html
+execute:
+  echo: false
 ---
-“[Genesis] is a data maestro!” 
+
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 3, alpha = 0.75) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 0.8) +
+  scale_color_brewer(palette = "Set1") +
+  labs(
+    title = "Iris Sepal Dimensions",
+    subtitle = "Sepal width tends to increase with sepal length",
+    x = "Sepal length (cm)",
+    y = "Sepal width (cm)",
+    color = "Species"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "bottom"
+  )
+```
